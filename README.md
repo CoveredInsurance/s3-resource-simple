@@ -2,6 +2,17 @@
 
 Resource to upload files to S3. Unlike the [the official S3 Resource](https://github.com/concourse/s3-resource), this Resource can upload or download multiple files.
 
+This fork of [github.com/18F/s3-resource-simple](https://github.com/18F/s3-resource-simple) includes an un-merged change that allows any directory to be sync'd (not just the working directory).
+
+## Build
+
+This resource can be built locally and pushed up to Covered's private docker registry.
+
+```
+docker build -t docker.itscovered.com/s3-resource-simple .
+docker push docker.itscovered.com/s3-resource-simple
+```
+
 ## Usage
 
 Include the following in your Pipeline YAML file, replacing the values in the angle brackets (`< >`):
@@ -67,10 +78,11 @@ options:
 ```
 
 ### Region
+
 Interacting with some AWS regions (like London) requires AWS Signature Version
 4. This options allows you to explicitly specify region where your bucket is
 located (if this is set, AWS_DEFAULT_REGION env variable will be set accordingly).
 
 ```yaml
-region: eu-west-2
+region: us-west-2
 ```
